@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Fly")
@@ -92,5 +93,19 @@ public class Fly {
 
     public List<Passenger> getPassengerList() {
         return passengerList;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idFly, departure, arraving, boarding, flyCode, passengerList);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fly that = (Fly) o;
+        return Objects.equals(idFly, that.idFly) && departure == that.departure && Objects.equals(arraving, that.arraving) && Objects.equals(boarding, that.boarding)
+                && Objects.equals(flyCode, that.flyCode) && Objects.equals(passengerList, that.passengerList);
     }
 }

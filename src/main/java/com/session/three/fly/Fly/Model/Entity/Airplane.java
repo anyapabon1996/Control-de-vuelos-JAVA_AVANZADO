@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Airplane")
@@ -97,5 +98,19 @@ public class Airplane {
                 ", seatQuantity=" + seatQuantity +
                 ", passengerList=" + passengerList +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idAirplane, name, brand, model, seatQuantity, passengerList);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Airplane that = (Airplane) o;
+        return Objects.equals(idAirplane, that.idAirplane) && name == that.name && Objects.equals(brand, that.brand) && Objects.equals(model, that.model)
+                && Objects.equals(seatQuantity, that.seatQuantity) && Objects.equals(passengerList, that.passengerList);
     }
 }

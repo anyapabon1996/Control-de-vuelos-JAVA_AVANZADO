@@ -14,8 +14,8 @@ public class PassengerService {
     @Autowired
     PassengerRepository passengerRepository;
 
-    public Passenger createPassenger(Passenger passenger){
-        return this.passengerRepository.save(passenger);
+    public void createPassenger(Passenger passenger){
+        this.passengerRepository.save(passenger);
     }
 
     public List<Passenger> getAllPassanger(){
